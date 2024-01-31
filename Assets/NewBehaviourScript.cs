@@ -7,20 +7,22 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody _rb;
 
-    float _playerSpeed = 5f;
+    float _playerSpeed = 5;
     float _horizontalInput;
     void Start()
     {
-        _rb = gameObject.GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        //_rb.freezeRotation = true
     }
 
     // Update is called once per frame
     void Update()
     {
-        _horizontalInput = Input.GetAxisRaw("horizontal");
+        _horizontalInput = Input.GetAxis("Horizontal");
 
-        if (_horizontalInput != 0){
-            _rb.AddForce(new Vector3(0f, _horizontalInput * _playerSpeed, 0f));
+        if (_horizontalInput != 0)
+        {
+            _rb.AddForce(new Vector2( _horizontalInput * _playerSpeed,0f));
         }
     }
 }
