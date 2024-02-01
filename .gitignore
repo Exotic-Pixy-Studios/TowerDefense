@@ -27,6 +27,7 @@
 .vs/
 .vscode/
 .idea/
+node_modules
 
 # Gradle cache directory
 .gradle/
