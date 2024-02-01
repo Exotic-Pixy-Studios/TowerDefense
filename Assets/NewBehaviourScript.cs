@@ -8,12 +8,12 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody _rb;
 
-    float _playerSpeed = 1.5f;
+    float _playerSpeed = 5f;
     float _horizontalInput;
     float _verticalInput;
-    float altura;
-    bool alturaBool = false;
-
+    bool _upInput = false;
+    bool _downInput = false;
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -25,11 +25,20 @@ public class NewBehaviourScript : MonoBehaviour
     {
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        alturaBool = Input.GetKey("space");
+        _upInput = Input.GetKey("space");
+        _downInput = Input.GetKey("tab");
 
-        if (_horizontalInput != 0 || _verticalInput != 0 || altura == 0)
+
+        if (_horizontalInput != 0 || _verticalInput != 0 || _upInput == false || _downInput == false)
         {
-            _rb.AddForce(new Vector3(_horizontalInput * _playerSpeed, Convert.ToSingle(alturaBool) * _playerSpeed, _verticalInput * _playerSpeed));
+            if (_upInput == true)
+            {
+                _rb.AddForce(new Vector3( _horizontalInput * _playerSpeed, Convert.ToSingle(_upInput) *_playerSpeed, _verticalInput * _playerSpeed));
+            }else{
+                _rb.AddForce(new Vector3( _horizontalInput * _playerSpeed, Convert.ToSingle(_downInput) *_playerSpeed*-1, _verticalInput * _playerSpeed));
+            }
+
         }
-    }
+
+    }   
 }
