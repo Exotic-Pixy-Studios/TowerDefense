@@ -1,0 +1,14 @@
+{
+    "name": "tower-defense",
+    "version": "1.0.0",
+    "author": "Exotic-Pixy-Studios",
+    "scripts": {
+        "start": "echo start",
+        "build": "echo build",
+        "test": "echo test",
+        "commit": "cz"
+    },
+    "dependencies": {
+        "commitizen": "^4.3.0"
+    }
+}
