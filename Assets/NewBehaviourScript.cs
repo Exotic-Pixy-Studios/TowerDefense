@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,12 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody _rb;
 
-    float _playerSpeed = 5;
+    float _playerSpeed = 1.5f;
     float _horizontalInput;
+    float _verticalInput;
+    float altura;
+    bool alturaBool = false;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -19,10 +24,12 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         _horizontalInput = Input.GetAxis("Horizontal");
+        _verticalInput = Input.GetAxis("Vertical");
+        alturaBool = Input.GetKey("space");
 
-        if (_horizontalInput != 0)
+        if (_horizontalInput != 0 || _verticalInput != 0 || altura == 0)
         {
-            _rb.AddForce(new Vector2( _horizontalInput * _playerSpeed,0f));
+            _rb.AddForce(new Vector3(_horizontalInput * _playerSpeed, Convert.ToSingle(alturaBool) * _playerSpeed, _verticalInput * _playerSpeed));
         }
     }
 }
